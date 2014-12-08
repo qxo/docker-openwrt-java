@@ -42,6 +42,8 @@ RUN opkg update && opkg install curl &&\
            /opt/jre/lib/amd64/libgstreamer-lite.so \
            /opt/jre/lib/amd64/libjavafx*.so \
            /opt/jre/lib/amd64/libjfx*.so
+#Installing JNA from https://github.com/twall/jna
+RUN curl -L -o /opt/jre/lib/ext/jna.jar https://github.com/twall/jna/raw/master/dist/jna.jar
 
 # Java needs some shared libs which are not available in a normal
 # OpenWrt build and thus must be bundled on a x86_64 Ubuntu host
