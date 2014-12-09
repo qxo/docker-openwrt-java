@@ -22,6 +22,15 @@ To just run it and see the java version:
 docker run -it --rm mcreations/openwrt-java
 ```
 
+### Additional Libraries
+#### JNA
+This imaged has a preinstalled JNA library from [here](https://github.com/twall/jna).
+JNA_VERSION environment varibale chooses which release of JNA should install on build.
+
+### Test
+#### Test JVM
 The script [list-system-properties.sh](test/list-system-properties.sh)
 shows how to pass a classpath with `-v` to the container.
+#### Test JNA
+The script [jna-c-printf-test.sh](test/jna-c-printf-test.sh) tests JNA by mapping the printf function from the standard C library and calling it.
 
