@@ -1,5 +1,0 @@
-#!/bin/bash
-dir="$(dirname "$0")"
-bin="$(basename "$0")"
-parentdir="$(dirname $dir)"
-exec -a "$bin" "$parentdir/ld-linux-x86-64.so.2" --library-path "/opt/jre/lib/amd64/server:/opt/jre/lib/amd64:/opt/jre/lib/amd64/jli:$dir/lib" "$parentdir/$bin" "$@"

@@ -12,29 +12,22 @@ MAINTAINER Kambiz Darabi <darabi@m-creations.net>
 
 # Java Version
 ENV JAVA_VERSION_MAJOR 8
-ENV JAVA_VERSION_MINOR 20
-ENV JAVA_VERSION_BUILD 26
+ENV JAVA_VERSION_MINOR 45
+ENV JAVA_VERSION_BUILD 14
 ENV JAVA_PACKAGE       server-jre
 ENV JNA_VERSION 4.1.0
 
 # Runtime environment
 ENV JAVA_HOME /opt/jre
-ENV PATH ${PATH}:${JAVA_HOME}/bin/bundled
+ENV PATH ${PATH}:${JAVA_HOME}/bin
 
-# Java needs some shared libs which are not available in a normal
-# OpenWrt build and thus must be bundled on a x86_64 Ubuntu host
-#
-# ./bin/bundle-libraries.sh image/root/opt/jre/bin image/root/opt/jre/bin/java
-#
-# and ADDed to the image
-
-ADD image/root /
-
+CMD [ "java", "-version" ]
 
 # Download and unarchive Java
 RUN opkg update && opkg install curl &&\
   curl -kLOH "Cookie: gpw_e24=http%3A%2F%2Fwww.oracle.com%2F; oraclelicense=accept-securebackup-cookie"\
     http://download.oracle.com/otn-pub/java/jdk/${JAVA_VERSION_MAJOR}u${JAVA_VERSION_MINOR}-b${JAVA_VERSION_BUILD}/${JAVA_PACKAGE}-${JAVA_VERSION_MAJOR}u${JAVA_VERSION_MINOR}-linux-x64.tar.gz &&\
+    mkdir /opt &&\
     tar -xzf ${JAVA_PACKAGE}-${JAVA_VERSION_MAJOR}u${JAVA_VERSION_MINOR}-linux-x64.tar.gz -C /opt &&\
     cp -r /opt/jdk1.${JAVA_VERSION_MAJOR}.0_${JAVA_VERSION_MINOR}/jre /opt/ &&\
     curl -kL -o /opt/jre/lib/ext/jna.jar https://github.com/twall/jna/raw/${JNA_VERSION}/dist/jna.jar &&\
