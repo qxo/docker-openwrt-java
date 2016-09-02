@@ -13,6 +13,7 @@ Note that we only install the server JRE.
 
 * `latest` or `8`: Oracle Java 8 (Server JRE)
 * `7`: Oracle Java 7 (Server JRE)
+* `jdk8`: Oracle Java 8 (JDK)
 
 ### Usage
 
